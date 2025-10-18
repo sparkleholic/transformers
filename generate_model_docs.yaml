@@ -1,0 +1,30 @@
+# 모델 문서 생성 설정 파일
+# "some" 모드에서 생성할 주요 모델들을 정의
+
+# "some" 모드에서 생성할 주요 모델들 (서브모듈은 자동 탐지)
+priority_models:
+  - auto
+  - bert
+  - gpt2
+  - roberta
+  - distilbert
+  - bart
+  - t5
+  - llama
+  - mistral
+  - gemma
+  - whisper
+  - clip
+  - vit
+  - deberta
+  - albert
+
+# 문제가 있어서 스킵할 모듈들
+skip_modules:
+  - deprecated
+  - __pycache__
+  - test_modules
+  - __init__.py
+  - .pyc
+  - .pyo
+  - .git
