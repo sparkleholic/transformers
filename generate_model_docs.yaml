@@ -1,25 +1,25 @@
-# 모델 문서 생성 설정 파일
-# "some" 모드에서 생성할 주요 모델들을 정의
+# Model docs generation configuration
+# Defines the priority models to generate in "some" mode
 
-# "some" 모드에서 생성할 주요 모델들 (서브모듈은 자동 탐지)
+# Priority models to generate in "some" mode (submodules auto-discovered)
 priority_models:
   - auto
   - bert
   - gpt2
-  - roberta
   - distilbert
   - bart
   - t5
   - llama
   - mistral
   - gemma
+  - gemma3
+  - gemma3n
   - whisper
   - clip
   - vit
-  - deberta
-  - albert
+  - exaone4
 
-# 문제가 있어서 스킵할 모듈들
+# Modules to skip because of known issues
 skip_modules:
   - deprecated
   - __pycache__

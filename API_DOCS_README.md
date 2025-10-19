@@ -1,226 +1,226 @@
 # 🤗 Transformers API Documentation Suite
 
-이 프로젝트는 Hugging Face Transformers 라이브러리의 **통합 API 문서 생성 도구**입니다. 핵심 모듈, 모델 패키지, 개별 서브모듈까지 포괄하는 완전한 문서를 제공합니다.
+This project is a **API documentation generation tool for Models** for the Hugging Face Transformers library. It provides comprehensive documentation covering core modules, model packages, and individual submodules.
 
-## 📋 생성된 문서 개요
+## 📋 Generated Documentation Overview
 
-### 🎯 통합 문서 (`api_docs/`)
-- **핵심 모듈**: 58개 transformers 핵심 모듈 (자동 탐지)
-- **모델 패키지**: 15개 주요 모델 패키지  
-- **서브모듈**: 112개 개별 서브모듈 (자동 탐지)
-- **총 성공률**: 97.4% (185/190)
-- **접근 방법**: `http://localhost:8080/`
+### 🎯 Documentation (`api_docs/`)
+- **Core Modules**: 58 transformers core modules (auto-discovered)
+- **Model Packages**: 15 priority model packages  
+- **Submodules**: 112 individual submodules (auto-discovered)
+- **Overall Success Rate**: 97.4% (185/190)
+- **Access Method**: `http://localhost:8080/`
 
-## 🔧 통합된 문서 생성 스크립트
+## 🔧 Documentation Generation Script
 
-### 📄 통합 문서 생성기 (권장)
+### 📄 Documentation Generator (Recommended)
 ```bash
-# 기본 사용법
-python3 generate_model_docs.py --some     # 주요 모델들만 생성
-python3 generate_model_docs.py --all      # 모든 모델들 생성
+# Basic usage
+python3 generate_model_docs.py --some     # Generate only priority models
+python3 generate_model_docs.py --all      # Generate all models
 
-# 단축 명령어
-python3 generate_model_docs.py -s         # --some와 동일
-python3 generate_model_docs.py -a         # --all과 동일
+# Shorthand commands
+python3 generate_model_docs.py -s         # Same as --some
+python3 generate_model_docs.py -a         # Same as --all
 
-# HTTP 서버 관련
-python3 generate_model_docs.py --run      # 기존 문서 서버만 실행
-python3 generate_model_docs.py -s --run   # 생성 후 서버 실행
-python3 generate_model_docs.py -s --open  # 생성 후 브라우저 열기
+# HTTP server related
+python3 generate_model_docs.py --run      # Run server for existing docs only
+python3 generate_model_docs.py -s --run   # Generate then run server
+python3 generate_model_docs.py -s --open  # Generate then open browser
 
-# 사용자 지정 디렉토리
-python3 generate_model_docs.py -s --dir ./my_docs    # 지정된 디렉토리에 생성
-python3 generate_model_docs.py --run -d ./my_docs    # 지정된 디렉토리 서버 실행
+# Custom directory
+python3 generate_model_docs.py -s --dir ./my_docs    # Generate to specified directory
+python3 generate_model_docs.py --run -d ./my_docs    # Run server for specified directory
 ```
 
-### ⚙️ 설정 파일
-- **`generate_model_docs.yaml`**: "some" 모드에서 생성할 주요 모델들을 정의
-- **동적 탐지**: 핵심 모듈과 서브모듈들은 디렉토리에서 자동 탐지
-- **수정 가능**: priority_models 리스트에 필요한 모델만 추가/제거
+### ⚙️ Configuration File
+- **`generate_model_docs.yaml`**: Defines priority models to generate in "some" mode
+- **Dynamic Discovery**: Core modules and submodules are auto-discovered from directories
+- **Customizable**: Add/remove models in the priority_models list as needed
 
-### 🧪 테스트
+### 🧪 Testing
 ```bash
-# 생성된 모듈들의 import 테스트
+# Test import of generated modules
 python3 test_model_docs.py
 ```
 
-## 🌐 문서 보기
+## 🌐 Viewing Documentation
 
-### 통합 문서 (권장)
+### Documentation (Recommended)
 ```bash
-# 방법 1: 생성과 동시에 서버 실행
+# Method 1: Generate and run server simultaneously
 python3 generate_model_docs.py --some --run
 
-# 방법 2: 기존 문서 서버만 실행  
+# Method 2: Run server for existing docs only  
 python3 generate_model_docs.py --run
 
-# 방법 3: 브라우저 자동 열기
+# Method 3: Auto-open browser
 python3 generate_model_docs.py --some --open
 
-# 방법 4: 수동 서버 실행
+# Method 4: Manual server execution
 cd api_docs
 python3 -m http.server 8080
-# 브라우저: http://localhost:8080/
+# Browser: http://localhost:8080/
 ```
 
-### 구조
-- **Core Modules**: `api_docs/core_modules/` - 핵심 transformers 모듈들
-- **Model Packages**: `api_docs/model_packages/` - 전체 모델 패키지들  
-- **Model Submodules**: `api_docs/model_submodules/` - 개별 서브모듈들
+### Structure
+- **Core Modules**: `api_docs/core_modules/` - Core transformers modules
+- **Model Packages**: `api_docs/model_packages/` - Complete model packages  
+- **Model Submodules**: `api_docs/model_submodules/` - Individual submodules
 
-## 📚 문서 내용 상세
+## 📚 Documentation Content Details
 
-### 🔧 Core Transformers Modules (58개 - 자동 탐지)
-`src/transformers/` 디렉토리에서 자동으로 탐지된 핵심 모듈들:
+### 🔧 Core Transformers Modules (58 modules - auto-discovered)
+Core modules auto-discovered from `src/transformers/` directory:
 ```python
-from transformers import cache_utils          # 캐싱 유틸리티
-from transformers import modeling_utils       # 모델 베이스 클래스
-from transformers import tokenization_utils   # 토크나이저 유틸리티
-from transformers import configuration_utils  # 설정 관리
-from transformers import training_args        # 훈련 설정
-from transformers import trainer              # 훈련 루프
-from transformers import image_processing_utils # 이미지 처리
-from transformers import feature_extraction_utils # 특성 추출
-from transformers import activations          # 활성화 함수
-from transformers import optimization         # 최적화 도구
-# ... 48개 더 (모두 자동 탐지)
+from transformers import cache_utils          # Caching utilities
+from transformers import modeling_utils       # Model base classes
+from transformers import tokenization_utils   # Tokenizer utilities
+from transformers import configuration_utils  # Configuration management
+from transformers import training_args        # Training configuration
+from transformers import trainer              # Training loop
+from transformers import image_processing_utils # Image processing
+from transformers import feature_extraction_utils # Feature extraction
+from transformers import activations          # Activation functions
+from transformers import optimization         # Optimization tools
+# ... 48 more (all auto-discovered)
 ```
 
-### 📦 Model Packages (15개)
-전체 모델 패키지 구조:
+### 📦 Model Packages (15 packages)
+Complete model package structure:
 ```python
-from transformers.models import llama      # LLaMA 전체 패키지
-from transformers.models import bert       # BERT 전체 패키지
-from transformers.models import gpt2       # GPT-2 전체 패키지
-from transformers.models import whisper    # Whisper 전체 패키지
-# ... 11개 더
+from transformers.models import llama      # LLaMA complete package
+from transformers.models import bert       # BERT complete package
+from transformers.models import gpt2       # GPT-2 complete package
+from transformers.models import whisper    # Whisper complete package
+# ... 11 more
 ```
 
-### 🔍 Model Submodules (112개 - 자동 탐지)
-각 모델 디렉토리에서 자동으로 탐지된 서브모듈들:
+### 🔍 Model Submodules (112 modules - auto-discovered)
+Submodules auto-discovered from each model directory:
 ```python
-# LLaMA 컴포넌트들 (6개 탐지)
+# LLaMA components (6 discovered)
 from transformers.models.llama import modeling_llama
 from transformers.models.llama import configuration_llama
 from transformers.models.llama import tokenization_llama
 from transformers.models.llama import convert_llama_weights_to_hf
 from transformers.models.llama import modeling_flax_llama
-# ... 등등
+# ... etc
 
-# BERT 컴포넌트들 (11개 탐지)
+# BERT components (11 discovered)
 from transformers.models.bert import modeling_bert
 from transformers.models.bert import configuration_bert
 from transformers.models.bert import modeling_tf_bert
 from transformers.models.bert import modeling_flax_bert
-# ... 등등
+# ... etc
 
-# Whisper 컴포넌트들 (11개 탐지)
+# Whisper components (11 discovered)
 from transformers.models.whisper import feature_extraction_whisper
 from transformers.models.whisper import modeling_whisper
 from transformers.models.whisper import english_normalizer
-# ... 등등
+# ... etc
 ```
 
-## 🎨 문서 특징
+## 🎨 Documentation Features
 
-### 🔍 고급 검색 기능
-- **실시간 필터링**: 키워드로 즉시 모듈 검색
-- **카테고리별 분류**: Core/Package/Submodule 구분
-- **태그 시스템**: Config, Model, Tokenizer, Feature 등
+### 🔍 Advanced Search Functionality
+- **Real-time Filtering**: Instant module search by keywords
+- **Category Classification**: Separated by Core/Package/Submodule
+- **Tag System**: Config, Model, Tokenizer, Feature, etc.
 
-### 📖 풍부한 내용
-- **완전한 API 참조**: 모든 클래스, 함수, 매개변수
-- **타입 힌트**: Python 타입 정보 포함
-- **소스 코드**: 구현 세부사항 확인 가능  
-- **네비게이션**: 모듈 간 빠른 이동
+### 📖 Rich Content
+- **Complete API Reference**: All classes, functions, parameters
+- **Type Hints**: Python type information included
+- **Source Code**: Implementation details viewable  
+- **Navigation**: Quick movement between modules
 
-### 🎯 반응형 디자인
-- **모바일 친화적**: 다양한 화면 크기 지원
-- **다크/라이트 모드**: 눈의 피로 최소화
-- **빠른 로딩**: 최적화된 HTML/CSS
+### 🎯 Responsive Design
+- **Mobile-Friendly**: Support for various screen sizes
+- **Dark/Light Mode**: Minimize eye strain
+- **Fast Loading**: Optimized HTML/CSS
 
-## 💡 실제 사용 사례
+## 💡 Real-World Use Cases
 
-### 1. 개발자 - API 참조
+### 1. Developer - API Reference
 ```python
-# cache_utils의 DynamicCache를 사용하고 싶을 때
-# → core_modules/src/transformers/cache_utils.html에서 확인
+# When you want to use DynamicCache from cache_utils
+# → Check in core_modules/src/transformers/cache_utils.html
 from transformers import cache_utils
 cache = cache_utils.DynamicCache()
 ```
 
-### 2. 연구자 - 모델 구조 분석
+### 2. Researcher - Model Architecture Analysis
 ```python
-# LLaMA의 attention 메커니즘을 분석하고 싶을 때
+# When you want to analyze LLaMA's attention mechanism
 # → model_submodules/llama/src/transformers/models/llama/modeling_llama.html
 from transformers.models.llama import modeling_llama
 attention_class = modeling_llama.LlamaAttention
 ```
 
-### 3. 학습자 - 라이브러리 구조 이해
+### 3. Learner - Understanding Library Structure
 ```python
-# Transformers의 전체 구조를 이해하고 싶을 때
-# → extended_index.html에서 카테고리별로 탐색
+# When you want to understand the overall structure of Transformers
+# → Browse by category in extended_index.html
 ```
 
-## 📊 통계 정보
+## 📊 Statistics Information
 
-### 생성 성공률
-- **기본 모델 문서**: 15/15 (100%)
-- **확장 문서**: 61/61 (100%)
-- **총 커버리지**: 76개 모듈/패키지
+### Generation Success Rate
+- **Basic Model Documentation**: 15/15 (100%)
+- **Extended Documentation**: 61/61 (100%)
+- **Total Coverage**: 76 modules/packages
 
-### 성능 정보
-- **생성 시간**: 
-  - 기본 문서: ~5-10분
-  - 확장 문서: ~10-15분
-- **문서 크기**: 총 ~100-150MB
-- **로딩 속도**: 각 페이지 < 1초
+### Performance Information
+- **Generation Time**: 
+  - Basic Documentation: ~5-10 minutes
+  - Extended Documentation: ~10-15 minutes
+- **Documentation Size**: Total ~100-150MB
+- **Loading Speed**: Each page < 1 second
 
-## 🔧 고급 사용법
+## 🔧 Advanced Usage
 
-### 개별 모듈 문서 생성
+### Individual Module Documentation Generation
 ```bash
-# 특정 core 모듈
+# Specific core module
 python3 -m pdoc src.transformers.cache_utils -o api_docs_extended/core_modules
 
-# 특정 model submodule  
+# Specific model submodule  
 python3 -m pdoc src.transformers.models.llama.modeling_llama -o custom_docs
 
-# 특정 model package
+# Specific model package
 python3 -m pdoc src.transformers.models.llama -o custom_docs
 ```
 
-### 커스텀 문서 스타일링
-생성된 HTML 파일들의 CSS를 수정하여 원하는 스타일로 커스터마이징 가능
+### Custom Documentation Styling
+You can customize the generated HTML files by modifying the CSS to your desired style.
 
-### 자동 업데이트
+### Automatic Updates
 ```bash  
-# 정기적으로 문서 업데이트하는 cron job 설정 가능
+# Set up a cron job for regular documentation updates
 0 2 * * * cd /path/to/transformers && python3 generate_extended_docs.py
 ```
 
-## 🤝 기여 방법
+## 🤝 How to Contribute
 
-1. **모듈 추가**: `generate_extended_docs.py`의 `CORE_MODULES`나 `PRIORITY_MODELS_WITH_SUBMODULES`에 새 모듈 추가
-2. **스타일 개선**: HTML 템플릿과 CSS 스타일 수정
-3. **기능 추가**: 검색, 필터링, 네비게이션 기능 개선
-4. **버그 리포트**: 문제가 있는 모듈이나 생성 오류 신고
+1. **Add Modules**: Add new modules to `CORE_MODULES` or `PRIORITY_MODELS_WITH_SUBMODULES` in `generate_extended_docs.py`
+2. **Style Improvements**: Modify HTML templates and CSS styles
+3. **Feature Additions**: Improve search, filtering, navigation features
+4. **Bug Reports**: Report problematic modules or generation errors
 
-## 📞 문제 해결
+## 📞 Troubleshooting
 
-### 일반적인 문제들
+### Common Issues
 
-**Q: 일부 모듈이 import 에러가 발생해요**
-A: `deprecated` 폴더나 실험적 기능들은 의도적으로 제외되었습니다. 필요시 `PROBLEMATIC_MODULES`에서 제거하세요.
+**Q: Some modules have import errors**
+A: Modules in the `deprecated` folder or experimental features are intentionally excluded. Remove them from `PROBLEMATIC_MODULES` if needed.
 
-**Q: 문서 생성이 느려요**  
-A: 병렬 처리 옵션을 사용하거나, 필요한 모듈만 선택적으로 생성하세요.
+**Q: Documentation generation is slow**  
+A: Use parallel processing options or selectively generate only needed modules.
 
-**Q: 브라우저에서 스타일이 깨져요**
-A: HTTP 서버를 통해 접근하세요. 직접 파일을 열면 CSS/JS가 제대로 로드되지 않을 수 있습니다.
+**Q: Styles are broken in browser**
+A: Access through HTTP server. Opening files directly may not load CSS/JS properly.
 
-## 📜 라이선스 & 크레딧
+## 📜 License & Credits
 
 - **Base Library**: Hugging Face Transformers
 - **Documentation Tool**: pdoc 15.0.4  
@@ -229,4 +229,4 @@ A: HTTP 서버를 통해 접근하세요. 직접 파일을 열면 CSS/JS가 제�
 
 ---
 
-🎉 **Happy Documenting!** 이 도구로 Transformers 라이브러리를 더 쉽게 탐색하고 활용하세요!
+🎉 **Happy Documenting!** Use this tool to explore and utilize the Transformers library more easily!
